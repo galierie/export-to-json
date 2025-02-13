@@ -1,0 +1,21 @@
+{
+  "name": "script",
+  "version": "1.0.0",
+  "description": "Testing Google Apps Script",
+  "private": true,
+  "scripts": {
+    "fmt": "prettier --write .",
+    "lint": "prettier --check . && pnpm --parallel /^lint:/",
+    "lint:js": "eslint"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.20.0",
+    "@google/clasp": "^2.5.0",
+    "@types/google-apps-script": "^1.0.94",
+    "eslint": "^9.20.1",
+    "eslint-config-prettier": "^10.0.1",
+    "globals": "^15.15.0",
+    "prettier": "^3.5.0",
+    "typescript-eslint": "^8.24.0"
+  }
+}
