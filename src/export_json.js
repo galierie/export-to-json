@@ -1,9 +1,9 @@
-/** @type {object} */
-const PLURAL = {
-    People: ['title', 'committee'],
-    Projects: ['proponents'],
-    Exec: ['pos'],
-};
+/**
+ * Mark object keys with array values
+ * by adding them here
+ * @type {object}
+ */
+const PLURAL = {};
 
 function onOpen() {
     const menu = [
