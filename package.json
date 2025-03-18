@@ -1,24 +1,23 @@
 {
-  "name": "script",
-  "version": "1.0.0",
-  "description": "Testing Google Apps Script",
-  "private": true,
-  "scripts": {
-    "push": "clasp push",
-    "pull": "clasp pull",
-    "fmt": "prettier --write .",
-    "lint": "prettier --check . && pnpm --parallel /^lint:/",
-    "lint:js": "eslint"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.20.0",
-    "@google/clasp": "^2.5.0",
-    "@types/google-apps-script": "^1.0.94",
-    "eslint": "^9.20.1",
-    "eslint-config-prettier": "^10.0.1",
-    "globals": "^15.15.0",
-    "prettier": "^3.5.0",
-    "typescript-eslint": "^8.24.0"
-  },
-  "packageManager": "pnpm@9.14.2+sha512.6e2baf77d06b9362294152c851c4f278ede37ab1eba3a55fda317a4a17b209f4dbb973fb250a77abc463a341fcb1f17f17cfa24091c4eb319cda0d9b84278387"
+    "name": "export_json",
+    "version": "1.0.0",
+    "description": "Google Apps Script for exporting JSON objects from Google Sheets",
+    "private": true,
+    "scripts": {
+        "fmt": "prettier --write .",
+        "lint": "pnpm --parallel /^lint:/",
+        "lint:prettier": "prettier --check .",
+        "lint:eslint": "eslint"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.22.0",
+        "@eslint/json": "^0.10.0",
+        "@google/clasp": "^2.5.0",
+        "@types/google-apps-script": "^1.0.97",
+        "eslint": "^9.22.0",
+        "eslint-config-prettier": "^10.1.1",
+        "globals": "^15.15.0",
+        "prettier": "^3.5.3",
+        "typescript-eslint": "^8.26.1"
+    }
 }
