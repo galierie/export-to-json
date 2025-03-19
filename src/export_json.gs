@@ -168,17 +168,22 @@ function _getObjKey(sheet_name, parsed_row, nested_keys, is_array = false) {
     /** @type {string} */
     let key = nested_keys[0];
 
+    if (!is_array && PLURAL[sheet_name] !== undefined && PLURAL[sheet_name].includes(key)) {
+        is_array = true;
+    }
+
     // Dive through the object to get the key with a non-object value
     for (let i = 1; i < nested_keys.length; i++) {
-        if (!is_array && PLURAL[sheet_name] !== undefined && PLURAL[sheet_name].includes(key)) {
-            is_array = true;
-        }
-
         if (obj[key] === undefined) {
             obj[key] = {};
         }
+
         obj = obj[key];
         key = nested_keys[i];
+
+        if (!is_array && PLURAL[sheet_name] !== undefined && PLURAL[sheet_name].includes(key)) {
+            is_array = true;
+        }
     }
 
     return { obj, key, is_array };
