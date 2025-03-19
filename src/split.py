@@ -3,6 +3,10 @@ from json import loads
 
 
 def split_to_indiv_files(f_name: str):
+    if not f_name or any(ch in r'\/:*?"<>|' or ch == '\0' for ch in f_name):
+        raise ValueError('Error: Invalid file name')
+
+
     actual_path = dirname(__file__)
     data_path = join(actual_path, './data')
 
