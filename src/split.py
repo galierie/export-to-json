@@ -1,5 +1,5 @@
 from os.path import dirname, join
-import json
+from json import loads
 
 
 def split_to_indiv_files(f_name: str):
@@ -8,7 +8,7 @@ def split_to_indiv_files(f_name: str):
 
     with open(join(data_path, f'./{f_name}')) as f:
         raw_json = f.read()
-        parsed_json = json.loads(raw_json)
+        parsed_json = loads(raw_json)
 
         for obj in parsed_json:
             if 'file_name' in obj:
