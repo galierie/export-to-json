@@ -1,14 +1,18 @@
 from os.path import dirname, join
-import json
+from json import loads
 
 
 def split_to_indiv_files(f_name: str):
+    if not f_name or any(ch in r'\/:*?"<>|' or ch == '\0' for ch in f_name):
+        raise ValueError('Error: Invalid file name')
+
+
     actual_path = dirname(__file__)
     data_path = join(actual_path, './data')
 
-    with open(join(data_path, f'./{f_name}')) as f:
+    with open(join(data_path, f'./{f_name}.json')) as f:
         raw_json = f.read()
-        parsed_json = json.loads(raw_json)
+        parsed_json = loads(raw_json)
 
         for obj in parsed_json:
             if 'file_name' in obj:
@@ -19,4 +23,8 @@ def split_to_indiv_files(f_name: str):
                 with open(join(data_path, f'./{new_f_name}.json'), 'w') as new_f:
                     new_f.write(stringified)
 
-# split_to_indiv_files('')
+def main():
+    f_name = input('File name: ').strip()
+    split_to_indiv_files(f_name)
+
+main()
