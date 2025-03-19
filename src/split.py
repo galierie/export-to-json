@@ -6,7 +6,7 @@ def split_to_indiv_files(f_name: str):
     actual_path = dirname(__file__)
     data_path = join(actual_path, './data')
 
-    with open(join(data_path, f'./{f_name}')) as f:
+    with open(join(data_path, f'./{f_name}.json')) as f:
         raw_json = f.read()
         parsed_json = loads(raw_json)
 
@@ -19,4 +19,8 @@ def split_to_indiv_files(f_name: str):
                 with open(join(data_path, f'./{new_f_name}.json'), 'w') as new_f:
                     new_f.write(stringified)
 
-# split_to_indiv_files('')
+def main():
+    f_name = input('File name: ').strip()
+    split_to_indiv_files(f_name)
+
+main()
