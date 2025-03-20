@@ -229,7 +229,16 @@ function _parseObjects(sheet_name, keys, values) {
                 // If cell contains an object, update the keys
                 if (val.includes(':')) {
                     let more_nested_keys = val.split(':');
-                    const actual_val = more_nested_keys.pop(); // The last substring is the actual value
+                    let actual_val = more_nested_keys.pop(); // The last substring is the actual value
+                    if (
+                        more_nested_keys[more_nested_keys.length - 1] === 'http' ||
+                        more_nested_keys[more_nested_keys.length - 1] === 'https'
+                    ) {
+                        // Unless it's a URL, in which case the 'http'/'https' substring
+                        // has been cut from the actual value
+                        actual_val = more_nested_keys.pop() + ':' + actual_val;
+                    }
+
                     val = actual_val === undefined ? '' : actual_val;
 
                     // Only get the appropriate key if there is an actual value
