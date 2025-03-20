@@ -103,7 +103,7 @@ function _getSheetData(sheet) {
 }
 
 /**
- * Get data from selected rows
+ * Gets data from selected rows
  * @param {GoogleAppsScript.Spreadsheet.Sheet} sheet
  * @param {Array<Array<number>>} rows // Format per entry: [start row of range, number of rows in range]
  * @returns {Array}
@@ -155,7 +155,7 @@ function _parseKeys(raw_keys) {
 }
 
 /**
- * Parse strings into maps to object keys
+ * Parses strings into maps to object keys
  * @param {string} sheet_name
  * @param {Object} parsed_row
  * @param {Array<string>} nested_keys
