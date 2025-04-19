@@ -10,7 +10,7 @@
         "lint": "pnpm --parallel /^lint:/",
         "lint:prettier": "prettier --check .",
         "lint:eslint": "eslint",
-        "split": "python3 src/split.py"
+        "split": "python3 src/split/main.py"
     },
     "dependencies": {
         "@types/google-apps-script": "^1.0.97"
