@@ -214,62 +214,25 @@ function _parseObjects(sheet_name, keys, values) {
             // Get the appropriate object key
             const obj_data = _getObjKey(sheet_name, parsed_row, keys[col].split(':'));
 
-            // Split whatever's in the cell
-            // as it could be
-            //      an array of strings,
-            //      an array of objects,
-            //      or not an array
-            const cell_values = row[col].toString().split(', ');
-            cell_values.forEach(val => {
-                // Destructure obj_data
-                let obj = obj_data.obj;
-                let key = obj_data.key;
-                let is_array = obj_data.is_array;
+            // Destructure obj_data
+            let obj = obj_data.obj;
+            let key = obj_data.key;
+            let is_array = obj_data.is_array;
 
-                // If cell contains an object, update the keys
-                if (val.includes(':')) {
-                    let more_nested_keys = val.split(':');
-                    let actual_val = more_nested_keys.pop(); // The last substring is the actual value
-                    if (
-                        more_nested_keys[more_nested_keys.length - 1] === 'http' ||
-                        more_nested_keys[more_nested_keys.length - 1] === 'https'
-                    ) {
-                        // Unless it's a URL, in which case the 'http'/'https' substring
-                        // has been cut from the actual value
-                        actual_val = more_nested_keys.pop() + ':' + actual_val;
-                    }
-
-                    val = actual_val === undefined ? '' : actual_val;
-
-                    // Only get the appropriate key if there is an actual value
+            if (is_array) {
+                if (obj[key] === undefined) {
+                    obj[key] = [];
+                }
+                const cell_values = row[col].toString().split(', ');
+                cell_values.forEach(val => {
+                    // Check if there is an actual value in the cell
                     if (val.length > 0) {
-                        // Dive deeper into the object to get the appropriate key
-                        const deeper_obj_data = _getObjKey(
-                            sheet_name,
-                            obj_data.obj,
-                            [obj_data.key].concat(more_nested_keys),
-                            obj_data.is_array,
-                        );
-
-                        // Destructure deeper_obj_data
-                        obj = deeper_obj_data.obj;
-                        key = deeper_obj_data.key;
-                        is_array = deeper_obj_data.is_array;
-                    }
-                }
-
-                // Check again if there is an actual value in the cell
-                if (val.length > 0) {
-                    if (is_array) {
-                        if (obj[key] === undefined) {
-                            obj[key] = [];
-                        }
                         obj[key].push(val);
-                    } else {
-                        obj[key] = obj[key] === undefined ? val : obj[key].concat(', ' + val);
                     }
-                }
-            });
+                });
+            } else {
+                obj[key] = row[col];
+            }
         }
 
         if (Object.keys(parsed_row).length > 0) {
