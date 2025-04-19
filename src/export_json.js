@@ -5,6 +5,7 @@
  */
 const PLURAL = {};
 
+// eslint-disable-next-line no-unused-vars
 function onOpen() {
     const menu = [
         {
@@ -18,12 +19,15 @@ function onOpen() {
     ];
 
     /** @type {GoogleAppsScript.Spreadsheet.Spreadsheet} */
+    // eslint-disable-next-line no-undef
     const ss = SpreadsheetApp.getActiveSpreadsheet();
     ss.addMenu('Export JSON', menu);
 }
 
+// eslint-disable-next-line no-unused-vars
 function exportSheet() {
     /** @type {GoogleAppsScript.Spreadsheet.Spreadsheet} */
+    // eslint-disable-next-line no-undef
     const ss = SpreadsheetApp.getActiveSpreadsheet();
 
     /** @type {GoogleAppsScript.Spreadsheet.Sheet} */
@@ -41,8 +45,10 @@ function exportSheet() {
     return;
 }
 
+// eslint-disable-next-line no-unused-vars
 function exportRows() {
     /** @type {GoogleAppsScript.Spreadsheet.Spreadsheet} */
+    // eslint-disable-next-line no-undef
     const ss = SpreadsheetApp.getActiveSpreadsheet();
 
     /** @type {GoogleAppsScript.Spreadsheet.Sheet} */
@@ -259,11 +265,13 @@ function _JSONParser(objects) {
  */
 function _displayText(json) {
     /** @type {GoogleAppsScript.HTML.HtmlOutput} */
+    // eslint-disable-next-line no-undef
     const output = HtmlService.createHtmlOutput(
         "<textarea style='width:100%;' rows='100'>" + json + '</textarea>',
     );
 
     output.setWidth(1600);
     output.setHeight(900);
+    // eslint-disable-next-line no-undef
     SpreadsheetApp.getUi().showModalDialog(output, 'Exported JSON');
 }
